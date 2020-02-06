@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script src="../public/assets/dashboards/js/jquery-3.4.1.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ubicua Cloud</title>
+    <!-- UBC CSS -->
+    <link rel="stylesheet" href="../public/assets/dashboards/css/ubicua.css">
+    <link rel="stylesheet" href="../public/assets/dashboards/css/ubicua_animate.css">
+    <!-- W3-School -->
+    <link rel="stylesheet" href="../public/assets/dashboards/css/w3.css">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="../public/assets/dashboards/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/assets/dashboards/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="../public/assets/dashboards/css/bootstrap-reboot.min.css">
+    <!-- Date range Picker-->
+    <link rel="stylesheet" href="../public/assets/dashboards/css/daterangepicker.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <!-- IONICONS -->
+    <link href="https://unpkg.com/ionicons@4.5.5/dist/css/ionicons.min.css" rel="stylesheet">
+    <!-- Jquery -->
+    <link rel="stylesheet" href="../public/assets/dashboards/css/jquery.highlighttextarea.min.css">
+</head>
+
+<body>
+    <div class="loading d-none">
+        <div class="spinner-border" role="status">
+
+        </div>
+    </div>
+    <!-- CONTENT -->
+    <div class="content">
+        <!-- NAVBAR -->
+        <div class="navbar_ubc">
+            <div class="ubc_toggle">
+                <div class="w3-display-container">
+                    <i class="fas fa-bars"></i>
+                    <div class="w3-display-left arrow_left"><i class="fas fa-caret-left"></i></div>
+                    <div class="w3-display-right arrow_right"><i class="fas fa-caret-right"></i></div>
+                </div>
+            </div>
+            <div class="text-left nav_tittle">Dashboard <i class="far fa-chart-bar"></i></div>
+
+            <div class="nav_h desk">
+                <div class="w3-display-container">
+                    <i class="fas fa-bullhorn"></i>
+                    <span class="ubc_b badge badge-danger w3-display-topright">0</span>
+                </div>
+            </div>
+
+            <div class="nav_h desk " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../public/assets/dashboards/imgs/avatar.png" alt="User" class="avatar"> <span
+                    id="user_name"></span>
+                <div class="dropdown-menu dropdown-menu-right ubc_drop text-center">
+                    <div id="logout" class="nav_h "><i class="fas fa-power-off"></i> Sair</div>
+                </div>
+            </div>
+
+            <div class="nav_h mobile">
+                <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <img src="../public/assets/dashboards/imgs/avatar.png" alt="User" class="avatar">
+                </div>
+                <div class="dropdown-menu ubc_drop text-center">
+                    <div class="nav_h">
+                        <div class="w3-display-container">
+                            <i class="fas fa-bullhorn"></i>
+                            <span class="ubc_b2 badge badge-danger w3-display-topmiddle">0</span>
+                        </div>
+                    </div>
+                    <div id="logout2" class="nav_h"><i class="fas fa-power-off"></i> Sair</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SIDEBAR -->
+        <div class="sidebar" id="sidebar"></div>
+
+        <!--PANEL-->
+        <div class="panel">
+            <!-- Input Area -->
+            <div class="panel_title w3-card w3-display-container w-100">
+                <div>
+                    <span>Disparo Aviva Cobrança Simples</span>
+                    <div id="base_export_smi" class="w3-display-topright d-none">
+                        <button class="btn btn-sm btn-outline-success export" type="button" style="margin:12px;">
+                            Exportar base <i class="fas fa-file-csv"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="chart_input_smi">
+                    <div>
+                        <small for="" class="form-text text-muted"> Data:</small>
+                        <div class="input-group">
+
+                            <input type="text" class="form-control form-control-sm " id="date_range">
+                            <div class="input-group-append">
+                                <button id="calendar" class="btn btn-sm btn-outline-secondary" type="button">
+                                    <i class="fas fa-calendar-alt"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <small for="" class="form-text text-muted"> Meio de disparo</small>
+                        <select class="form-control form-control-sm" id="select_disparo">
+                            <option value="b.tipodisp" selected>--Todos--</option>
+                            <option value="'SMS'">-- SMS --</option>
+                            <option value="'WPP'">-- WhatsApp --</option>
+                        </select>
+                    </div>
+                    <div>
+                        <small for="" class="form-text text-muted"> Faixa de Cobrança:</small>
+                        <select class="form-control form-control-sm col-sm-12" id="select_cobr">
+                            <option value="b.faixa" selected>-- Todas --</option>
+                            <option value="'faixa 1'">-- Preventivo --</option>
+                            <option value="'faixa 2'">--- Cobrança I--</option>
+                            <option value="'faixa 3'">--- Cobrança II --</option>
+                        </select>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+
+            <br>
+
+            <section id="chart_area">
+                <div class="chart_container" style="grid-template-columns: 100% 100%;" id="panel_container">
+                    <section id="SMS" class="d-none">
+                        <div class="chart_info" style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;">
+                            <div class="w3-card border_cyan">
+                                <span title="Total Mailing" class="text-muted">Total Mailing</span>
+                                <h3 id="total_mailing"></h3>
+                            </div>
+                            <div class="w3-card border_blue">
+                                <span title="Mailing Váliado" class="text-muted">Mailing Válido</span>
+                                <h3 id="mailing_valido"></h3>
+                            </div>
+                            <div class="w3-card border_red">
+                                <span title="Enviados com sucesso" class="text-muted">Enviados com sucesso</span>
+                                <h3 id="enviados_sucesso"></h3>
+                            </div>
+                            <div class="w3-card border_yellow">
+                                <span title="Acessos" class="text-muted">Clientes sem wpp</span>
+                                <h3 id="sem_wpp"></h3>
+                            </div>
+                            <div class="w3-card border_cyan">
+                                <span title="%Penetração base total" class="text-muted">Total não enviados</span>
+                                <h3 id="nao_enviados"></h3>
+                            </div>
+                            <div class="w3-card border_blue">
+                                <span title="%Penetração c/ sucesso" class="text-muted">Dir. para front WS</span>
+                                <h3 id="dir_front"></h3>
+                            </div>
+                            <div class="w3-card border_blue">
+                                <span title="%Penetração c/ sucesso" class="text-muted">%Penetração na base</span>
+                                <h3 id="penetracao_base"></h3>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Chart Area-->
+                <div class="chart_container2" id="funnel_container">
+                    <div class="w3-card-4" id="funell_sms">
+                        <div class="chart">
+                            <div class="header">
+                                <div><i class="fas fa-sms text-muted"></i></div>
+                                <div><i id="chart1_csv" class="fas fa-file-csv text-muted"></i></div>
+                                <div><i class="fas fa-expand text-muted fullscreenToggle"></i></div>
+                            </div>
+                            <div id="chartdiv" class="body">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="w3-card-4" class="d-none" id="funell_wpp">
+                        <div class="chart">
+                            <div class="header">
+                                <div><i class="fab fa-whatsapp text-muted"></i></div>
+                                <div><i id="chart2_csv" class="fas fa-file-csv text-muted"></i></div>
+                                <div><i class="fas fa-expand text-muted fullscreenToggle"></i></div>
+                            </div>
+                            <div id="chartdiv2" class="body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chart_container2"  id="pie_container">
+                    <div class="w3-card-4" id="pie_sms">
+                        <div class="chart">
+                            <div class="header">
+                                <div><i class="fas fa-sms text-muted"></i></div>
+                                <div><i id="chart3_csv" class="fas fa-file-csv text-muted"></i></div>
+                                <div><i class="fas fa-expand text-muted fullscreenToggle"></i></div>
+                            </div>
+                            <div id="chartdiv3" class="body">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w3-card-4" id="pie_wpp">
+                        <div class="chart">
+                            <div class="header">
+                                <div><i class="fab fa-whatsapp text-muted"></i></div>
+                                <div><i id="chart4_csv" class="fas fa-file-csv text-muted"></i></div>
+                                <div><i class="fas fa-expand text-muted fullscreenToggle"></i></div>
+                            </div>
+                            <div id="chartdiv4" class="body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br> <br>
+            </div>
+        </section>
+        <br> <br>
+    </div>
+</div>
+
+    <!-- JQuery -->
+    <script src="../public/assets/dashboards/js/jquery-3.4.1.min.js"></script>
+    <script src="../public/assets/dashboards/js/jquery.highlighttextarea.min.js"> </script>
+    <!--Bootstrap Script-->
+    <script src="../public/assets/dashboards/js/popper.min.js"></script>
+    <script src="../public/assets/dashboards/js/bootstrap.min.js"></script>
+    <!-- ionicons -->
+    <script src="https://unpkg.com/ionicons@4.5.5/dist/ionicons.js"></script>
+    <!-- Sweet Alert-->
+    <script src="../public/assets/dashboards/js/sweetalert2.all.min.js"></script>
+    <!--Date range picker-->
+    <script src="../public/assets/dashboards/js/moment.min.js"></script>
+    <script src="../public/assets/dashboards/js/daterangepicker.js"></script>
+    <!-- Papa Parse -->
+    <script src="../public/assets/dashboards/js/papaparse.min.js"></script>
+    <!-- Amcharts -->
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/material.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/dataviz.js"></script>
+    <script src="https://www.amcharts.com/lib/4/lang/de_DE.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+    <!-- My script -->
+    <script src="../public/assets/dashboards/js/ubicua.js"></script>
+    <script src="../public/assets/dashboards/js/aviva_cob_simples_charts.js"></script>
+    <script src="../public/assets/dashboards/js/sidebar.js"></script>
+
+    <script>
+        $("#aviva_cob_simples").addClass('active');
+
+        $("#date_range").daterangepicker({
+            "locale": {
+                "format": "DD/MM/YYYY",
+                "separator": " - ",
+                "applyLabel": "Aplicar",
+                "cancelLabel": "Cancelar",
+                "fromLabel": "De",
+                "toLabel": "Até",
+                "customRangeLabel": "Custom",
+                "daysOfWeek": [
+                    "Dom",
+                    "Seg",
+                    "Ter",
+                    "Qua",
+                    "Qui",
+                    "Sex",
+                    "Sáb"
+                ],
+                "monthNames": [
+                    "Janeiro",
+                    "Fevereiro",
+                    "Março",
+                    "Abril",
+                    "Maio",
+                    "Junho",
+                    "Julho",
+                    "Agosto",
+                    "Setembro",
+                    "Outubro",
+                    "Novembro",
+                    "Dezembro"
+                ],
+                "firstDay": 0
+            },
+
+
+        });
+
+        $("#calendar").on("click", function (e) {
+            $("#date_range").focus();
+        });
+
+        function date_val() {
+            var date = $("#date_range").val()
+            date = date.split("-")
+            console.log(date);
+        }
+    </script>
+</body>
+</html>
