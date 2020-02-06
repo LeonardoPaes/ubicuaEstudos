@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>Skat</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <strong>
+                <span>S</span>KAT
+            </strong>
+            <nav class="main-bar">
+                <ul>
+                    <li><img src="../assets/images/btn-close.svg" id="closeBtn"></a></li>
+                    <li><img src="../assets/images/maximize.svg" id="maxBtn"></li>
+                    <li><img src="../assets/images/btn-min.svg" id="minBtn" (click)="minimizeWindow()"></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="side-nav">
+            <ul>
+                <li><a href="index.html"><i class="fas fa-user-plus"></i></a></li>
+                <li><a href="lista.html"><i class="far fa-list-alt selected"></i></a></li>
+                <li><i class="fas fa-award"></i></li>
+            </ul>
+        </div>
+        <div class="main">
+                <table id="jogadores">
+                    <tr>
+                        <th>ID</th>
+                        <th>Jogador</th>
+                        <th>Nacionalidade</th>
+                        <th>Presença</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Bruno Paes</td>
+                        <td>Brasileiro</td>
+                        <td>
+                            <input type="radio" class="radio" id="brunopresente" name="radioBruno">
+                            <label for="brunopresente">Presente</label>
+                            <input type="radio" class="radio" id="brunoausente" name="radioBruno">
+                            <label for="brunoausente">Ausente</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Anibal Claim</td>
+                        <td>Brasileiro</td>
+                        <td>
+                            <input type="radio" class="radio" id="anibalPresente" name="radioAnibal"> 
+                            <label for="anibalPresente">Presente</label>
+                            <input type="radio" class="radio" id="anibalAusente" name="radioAnibal">
+                            <label for="anibalAusente">Ausente</label>
+                        </td>
+                    </tr>
+                    <tfoot>
+                        <tr>
+                            <td>Total Presentes:</td>
+                            <td>2</td>
+                            <td></td>
+                            <td><button class="button button-red" onclick="teste()">Sortear</button></td>
+                        </tr>
+                    </tfoot>
+                </table>
+        </div>
+        <div class="background"></div>
+    </div>
+    <script>
+        function teste(){
+            window.location.href = "mesas.html"
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/f8ec645e57.js" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+</html>
