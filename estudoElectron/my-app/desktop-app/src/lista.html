@@ -8,56 +8,20 @@
     <title>Skat</title>
 </head>
 <body>
+    <div class="side-nav" id="sidebar"> </div>
+    <div class="background"></div>
     <div class="container">
-        <header>
-            <strong>
-                <span>S</span>KAT
-            </strong>
-            <nav class="main-bar">
-                <ul>
-                    <li><img src="../assets/images/btn-close.svg" id="closeBtn"></a></li>
-                    <li><img src="../assets/images/maximize.svg" id="maxBtn"></li>
-                    <li><img src="../assets/images/btn-min.svg" id="minBtn" (click)="minimizeWindow()"></li>
-                </ul>
-            </nav>
-        </header>
-        <div class="side-nav">
-            <ul>
-                <li><a href="index.html"><i class="fas fa-user-plus"></i></a></li>
-                <li><a href="lista.html"><i class="far fa-list-alt selected"></i></a></li>
-                <li><i class="fas fa-award"></i></li>
-            </ul>
-        </div>
+        <div id="mainbar"></div>
         <div class="main">
                 <table id="jogadores">
-                    <tr>
-                        <th>ID</th>
-                        <th>Jogador</th>
-                        <th>Nacionalidade</th>
-                        <th>Presença</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Bruno Paes</td>
-                        <td>Brasileiro</td>
-                        <td>
-                            <input type="radio" class="radio" id="brunopresente" name="radioBruno">
-                            <label for="brunopresente">Presente</label>
-                            <input type="radio" class="radio" id="brunoausente" name="radioBruno">
-                            <label for="brunoausente">Ausente</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Anibal Claim</td>
-                        <td>Brasileiro</td>
-                        <td>
-                            <input type="radio" class="radio" id="anibalPresente" name="radioAnibal"> 
-                            <label for="anibalPresente">Presente</label>
-                            <input type="radio" class="radio" id="anibalAusente" name="radioAnibal">
-                            <label for="anibalAusente">Ausente</label>
-                        </td>
-                    </tr>
+                    <tbody id="jogadoresCorpo">
+                        <tr>
+                            <th>ID</th>
+                            <th>Jogador</th>
+                            <th>Equipe</th>
+                            <th>Presença</th>
+                        </tr>
+                    </tbody>
                     <tfoot>
                         <tr>
                             <td>Total Presentes:</td>
@@ -68,14 +32,17 @@
                     </tfoot>
                 </table>
         </div>
-        <div class="background"></div>
     </div>
+    <script src="https://kit.fontawesome.com/f8ec645e57.js" crossorigin="anonymous"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="../assets/js/mainbar.js"></script>
+    <script src="../assets/js/index.js"></script>
+    <script src="../assets/js/lista.js"></script>
     <script>
         function teste(){
             window.location.href = "mesas.html"
         }
+        document.querySelector('#lista').classList.add("selected");
     </script>
-    <script src="https://kit.fontawesome.com/f8ec645e57.js" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
 </body>
 </html>

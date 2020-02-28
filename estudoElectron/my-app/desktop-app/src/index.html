@@ -8,41 +8,32 @@
     <title>Skat</title>
 </head>
 <body>
+    <div class="side-nav" id="sidebar">
+    </div>
+    <div class="background"></div>
     <div class="container">
-        <header>
-            <strong>
-                <span>S</span>KAT
-            </strong>
-            <nav class="main-bar">
-                <ul>
-                    <li><img src="../assets/images/btn-close.svg" id="closeBtn"></li>
-                    <li><img src="../assets/images/maximize.svg" id="maxBtn"></li>
-                    <li><img src="../assets/images/btn-min.svg" id="minBtn" (click)="minimizeWindow()"></li>
-                </ul>
-            </nav>
-        </header>
-        <div class="side-nav">
-            <ul>
-                <li><a href="index.html"><i class="fas fa-user-plus selected"></i></a></li>
-                <li><a href="lista.html"><i class="far fa-list-alt"></i></a></li>
-                <li><i class="fas fa-award"></i></li>
-            </ul>
-        </div>
+        <div id="mainbar"></div>
         <div class="main">
             <strong>
                 <div class="logo">
                    <span>S</span>KAT 
                 </div>
             </strong>
-            <form class="cadastrar-jogador">
+            <form class="cadastrar-jogador" id="cadastrar-jogador">
                 <input type="text" id="nome" placeholder="Nome Completo">
-                <input type="text" id="nacionalidade" placeholder="Nacionalidade">
-                <button class="button button-red button-pagina-cadastro">Cadastrar</button>
+                <input type="text" id="equipe" placeholder="Equipe">
+                <button class="button button-red button-pagina-cadastro" type="submit">Cadastrar</button>
             </form>
         </div>
-        <div class="background"></div>
     </div>
     <script src="https://kit.fontawesome.com/f8ec645e57.js" crossorigin="anonymous"></script>
-    <script src="index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="../assets/js/sidebar.js"></script>
+    <script src="../assets/js/mainbar.js"></script>
+    <script src="../assets/js/index.js"></script>
+    <script src="../assets/js/banco.js"></script>
+    <script>
+        document.querySelector('#cadastrar').classList.add("selected");
+    </script>
 </body>
 </html>
